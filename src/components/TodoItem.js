@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TodoItem = ({ todo, removeTodo }) => {
+  const [editTodo, setEditTodo] = useState(todo.title);
+
   const deleteTodo = (e) => {
     e.preventDefault();
     removeTodo(todo.id);
@@ -8,7 +10,13 @@ const TodoItem = ({ todo, removeTodo }) => {
 
   return (
     <div className="todoItem">
-      <h2>{todo.title}</h2>
+      <input
+        style={{ width: "100%", fontSize: "30px" }}
+        type="text"
+        value={editTodo}
+        placeholder=""
+        onChange={(e) => setEditTodo(e.target.value)}
+      />
       <button className="button" onClick={deleteTodo}>
         x
       </button>
